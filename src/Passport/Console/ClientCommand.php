@@ -60,11 +60,13 @@ class ClientCommand extends Command
     {
         $name = $this->option('name') ?: $this->ask(
             'What should we name the personal access client?',
-            config('app.name').' Personal Access Client'
+            config('app.name') . ' Personal Access Client'
         );
 
         $client = $clients->createPersonalAccessClient(
-            null, $name, 'http://localhost'
+            null,
+            $name,
+            'http://localhost'
         );
 
         $this->info('Personal access client created successfully.');
@@ -82,7 +84,7 @@ class ClientCommand extends Command
     {
         $name = $this->option('name') ?: $this->ask(
             'What should we name the password grant client?',
-            config('app.name').' Password Grant Client'
+            config('app.name') . ' Password Grant Client'
         );
 
         $providers = array_keys(config('auth.providers'));
@@ -94,7 +96,10 @@ class ClientCommand extends Command
         );
 
         $client = $clients->createPasswordGrantClient(
-            null, $name, 'http://localhost', $provider
+            null,
+            $name,
+            'http://localhost',
+            $provider
         );
 
         $this->info('Password grant client created successfully.');
@@ -112,11 +117,13 @@ class ClientCommand extends Command
     {
         $name = $this->option('name') ?: $this->ask(
             'What should we name the client?',
-            config('app.name').' ClientCredentials Grant Client'
+            config('app.name') . ' ClientCredentials Grant Client'
         );
 
         $client = $clients->create(
-            null, $name, ''
+            null,
+            $name,
+            ''
         );
 
         $this->info('New client created successfully.');
@@ -146,7 +153,13 @@ class ClientCommand extends Command
         );
 
         $client = $clients->create(
-            $userId, $name, $redirect, null, false, false, ! $this->option('public')
+            $userId,
+            $name,
+            $redirect,
+            null,
+            false,
+            false,
+            !$this->option('public')
         );
 
         $this->info('New client created successfully.');
@@ -167,7 +180,7 @@ class ClientCommand extends Command
             $this->line('');
         }
 
-        $this->line('<comment>Client ID:</comment> '.$client->id);
-        $this->line('<comment>Client secret:</comment> '.$client->plainSecret);
+        $this->line('<comment>Client ID:</comment> ' . $client->id);
+        $this->line('<comment>Client secret:</comment> ' . $client->plainSecret);
     }
 }

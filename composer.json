@@ -1,7 +1,7 @@
 {
-    "name": "vangaurd/mongodb-passport",
+    "name": "thulisoft/laravel-mongodb-passport",
     "description": "A package to allow laravel 8 /passport use with jenssegers/laravel-mongodb",
-    "homepage": "https://github.com/vangaurdkarthik/laravel-mongodb-passport",
+    "homepage": "https://github.com/thulisoft/laravel-mongodb-passport",
     "license": "MIT",
     "keywords": [
         "laravel",
@@ -18,19 +18,17 @@
         "jenssegers/mongodb": "^3.8",
         "laravel/passport": "^10.1"
     },
-	"minimum-stability": "stable",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "MongoPassport\\Mongodb\\": "src"
         }
     },
-    "authors": [
-        {
-            "name": "ArkhaSystems",
-            "email": "support@arkhasystems.com",
-            "role": "Support"
-        }
-    ],
+    "authors": [{
+        "name": "Thulisoft",
+        "email": "thulisoft.info@gmail.com",
+        "role": "Support"
+    }],
     "extra": {
         "laravel": {
             "providers": [

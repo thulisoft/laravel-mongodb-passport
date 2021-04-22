@@ -49,11 +49,12 @@ class PersonalAccessTokenFactory
      * @param  \Lcobucci\JWT\Parser  $jwt
      * @return void
      */
-    public function __construct(AuthorizationServer $server,
-                                ClientRepository $clients,
-                                TokenRepository $tokens,
-                                JwtParser $jwt)
-    {
+    public function __construct(
+        AuthorizationServer $server,
+        ClientRepository $clients,
+        TokenRepository $tokens,
+        JwtParser $jwt
+    ) {
         $this->jwt = $jwt;
         $this->tokens = $tokens;
         $this->server = $server;
@@ -82,7 +83,8 @@ class PersonalAccessTokenFactory
         });
 
         return new PersonalAccessTokenResult(
-            $response['access_token'], $token
+            $response['access_token'],
+            $token
         );
     }
 
@@ -114,7 +116,8 @@ class PersonalAccessTokenFactory
     protected function dispatchRequestToAuthorizationServer(ServerRequest $request)
     {
         return json_decode($this->server->respondToAccessTokenRequest(
-            $request, new Response
+            $request,
+            new Response
         )->getBody()->__toString(), true);
     }
 

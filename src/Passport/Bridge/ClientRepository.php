@@ -33,7 +33,7 @@ class ClientRepository implements ClientRepositoryInterface
     {
         $record = $this->clients->findActive($clientIdentifier);
 
-        if (! $record) {
+        if (!$record) {
             return;
         }
 
@@ -56,11 +56,11 @@ class ClientRepository implements ClientRepositoryInterface
         // from the main interface. We'll only let certain clients generate the tokens.
         $record = $this->clients->findActive($clientIdentifier);
 
-        if (! $record || ! $this->handlesGrant($record, $grantType)) {
+        if (!$record || !$this->handlesGrant($record, $grantType)) {
             return false;
         }
 
-        return ! $record->confidential() || $this->verifySecret((string) $clientSecret, $record->secret);
+        return !$record->confidential() || $this->verifySecret((string) $clientSecret, $record->secret);
     }
 
     /**
@@ -72,13 +72,13 @@ class ClientRepository implements ClientRepositoryInterface
      */
     protected function handlesGrant($record, $grantType)
     {
-        if (is_array($record->grant_types) && ! in_array($grantType, $record->grant_types)) {
+        if (is_array($record->grant_types) && !in_array($grantType, $record->grant_types)) {
             return false;
         }
 
         switch ($grantType) {
             case 'authorization_code':
-                return ! $record->firstParty();
+                return !$record->firstParty();
             case 'personal_access':
                 return $record->personal_access_client && $record->confidential();
             case 'password':
@@ -100,7 +100,7 @@ class ClientRepository implements ClientRepositoryInterface
     protected function verifySecret($clientSecret, $storedHash)
     {
         return Passport::$hashesClientSecrets
-                    ? password_verify($clientSecret, $storedHash)
-                    : hash_equals($storedHash, $clientSecret);
+            ? password_verify($clientSecret, $storedHash)
+            : hash_equals($storedHash, $clientSecret);
     }
 }

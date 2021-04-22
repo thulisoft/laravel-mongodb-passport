@@ -7,6 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Str;
 use Laravel\Passport\Database\Factories\ClientFactory;
 use Laravel\Passport\Passport;
+
 class Client extends Model
 {
     use HasFactory;
@@ -124,7 +125,7 @@ class Client extends Model
     {
         $this->plainSecret = $value;
 
-        if (is_null($value) || ! Passport::$hashesClientSecrets) {
+        if (is_null($value) || !Passport::$hashesClientSecrets) {
             $this->attributes['secret'] = $value;
 
             return;
@@ -160,7 +161,7 @@ class Client extends Model
      */
     public function confidential()
     {
-        return ! empty($this->secret);
+        return !empty($this->secret);
     }
 
     /**
